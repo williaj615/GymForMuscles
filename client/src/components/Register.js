@@ -6,6 +6,8 @@ function Register({ history }) {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [errors, setErrors] = useState([]);
 
@@ -16,6 +18,8 @@ function Register({ history }) {
       email,
       password,
       confirmPassword,
+      firstName,
+      lastName
     })
       .then((user) => history.push("/"))
       .catch((err) => {
@@ -29,6 +33,28 @@ function Register({ history }) {
       <ul>
         {errors && errors.map((message, i) => <li key={i}>{message}</li>)}
       </ul>
+      <div>
+        <label htmlFor="firstName">First Name</label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="firstName"
+          required
+          placeholder="John"
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="lastName"
+          required
+          placeholder="Doe"
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
       <div>
         <label htmlFor="username">Username</label>
         <input

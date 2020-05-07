@@ -15,7 +15,7 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
-            <li className="nav-item">Hello {user.username}</li>
+            <li className="nav-item">Hello {user.firstName}</li>
             <li className="nav-item" onClick={logout}>
               Log out
             </li>
