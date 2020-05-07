@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { register } from "../API/userManager";
+import { login } from "../../API/userManager";
 
 function Register({ history }) {
   const [username, setUsername] = useState();
@@ -13,7 +13,7 @@ function Register({ history }) {
 
   const submit = (event) => {
     event.preventDefault();
-    register({
+    Register({
       username,
       email,
       password,

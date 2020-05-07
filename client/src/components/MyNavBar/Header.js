@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { getUser, removeUser } from "../API/userManager";
+import { getUser, removeUser } from "../../API/userManager";
 
 function Header({ history }) {
   const user = getUser();
@@ -15,6 +15,9 @@ function Header({ history }) {
       <ul className="nav-items">
         {user ? (
           <>
+            <Link className="nav-item nav-link" to="/api/Exercises">Exercise Library</Link>
+            <li className="nav-item nav-link">Workout Library</li>
+            <li className="nav-item nav-link">Your Workout History</li>
             <li className="nav-item">Hello {user.firstName}</li>
             <li className="nav-item" onClick={logout}>
               Log out
