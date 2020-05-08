@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Jasmine Williams\\Desktop\\workspace\\capstone-backend\\GymForMuscles\\GymForMuscles.csproj",
-        "projectName": "Capstone",
+        "projectName": "GymForMuscles",
         "projectPath": "C:\\Users\\Jasmine Williams\\Desktop\\workspace\\capstone-backend\\GymForMuscles\\GymForMuscles.csproj",
         "packagesPath": "C:\\Users\\Jasmine Williams\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Jasmine Williams\\Desktop\\workspace\\capstone-backend\\GymForMuscles\\obj\\",
@@ -59,6 +59,10 @@
               "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[3.0.0, )"
             },

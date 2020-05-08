@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Capstone.Settings
+namespace GymForMuscles.Settings
 {
     public class JwtSettings
     {

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UserSecretsId>aspnet-Capstone-6CD26CB1-73A5-4A00-878C-7DC0F5D2CE96</UserSecretsId>
-    <AssemblyName>Capstone</AssemblyName>
+    <UserSecretsId>aspnet-GymForMuscles-6CD26CB1-73A5-4A00-878C-7DC0F5D2CE96</UserSecretsId>
+    <AssemblyName>GymForMuscles</AssemblyName>
   </PropertyGroup>
 
 
@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />

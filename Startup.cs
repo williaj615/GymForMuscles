@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Capstone.Data;
+using GymForMuscles.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Capstone.Settings;
+using GymForMuscles.Settings;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Capstone.Interfaces;
-using Capstone.Services;
-using Capstone.Models.Data;
+using GymForMuscles.Interfaces;
+using GymForMuscles.Services;
+using GymForMuscles.Models.Data;
 
-namespace Capstone
+namespace GymForMuscles
 {
     public class Startup
     {

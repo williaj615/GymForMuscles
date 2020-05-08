@@ -21,7 +21,7 @@ const getAllExercises = (uid) => new Promise((resolve, reject) => {
 });
 
 
-const saveExercise = (exerciseInfo) => axios.post(`localhost:5001/api/Exercises`, exerciseInfo);
+const saveExercise = (exerciseInfo) => axios.post(`/api/exercises`, exerciseInfo);
 
 const removeExercise = (exerciseId) => axios.delete(`localhost:5001/api/Exercises/${exerciseId}`);
 

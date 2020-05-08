@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Capstone.Data;
-using Capstone.Interfaces;
-using Capstone.Models.Data;
-using Capstone.Models.ViewModels;
-using Capstone.Settings;
+using GymForMuscles.Data;
+using GymForMuscles.Interfaces;
+using GymForMuscles.Models.Data;
+using GymForMuscles.Models.ViewModels;
+using GymForMuscles.Settings;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,7 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capstone.Services
+namespace GymForMuscles.Services
 {
     public class UserService : IUserService
     {
@@ -81,8 +81,7 @@ namespace Capstone.Services
                 Email = user.Email,
                 UserName = user.Username,
                 FirstName = user.FirstName,
-                LastName = user.LastName,
-                StreetAddress = user.StreetAddress
+                LastName = user.LastName
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, user.Password);
@@ -226,7 +225,10 @@ namespace Capstone.Services
                     new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim("id", user.Id)
+                    new Claim("id", user.Id),
+                    new Claim("firstName", user.FirstName),
+                    new Claim("lastName", user.LastName)
+
                 }),
                 Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifetime),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
