@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Capstone.Interfaces;
-using Capstone.Models.ViewModels;
-using Capstone.Routes.V1;
+using GymForMuscles.Interfaces;
+using GymForMuscles.Models.ViewModels;
+using GymForMuscles.Routes.V1;
 
-namespace Capstone.Controllers.V1
+namespace GymForMuscles.Controllers.V1
 {
     [ApiController]
     public class UserController : ControllerBase

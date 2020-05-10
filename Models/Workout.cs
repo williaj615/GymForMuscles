@@ -1,4 +1,4 @@
-﻿using Capstone.Models.Data;
+﻿using GymForMuscles.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace GymForMuscles.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

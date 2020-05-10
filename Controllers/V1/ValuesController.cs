@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Capstone.Routes.V1;
+using GymForMuscles.Routes.V1;
 
-namespace Capstone.Controllers.V1
+namespace GymForMuscles.Controllers.V1
 {
     [ApiController]
     [Authorize]

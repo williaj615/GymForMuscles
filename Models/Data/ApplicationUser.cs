@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Capstone.Models.Data
+namespace GymForMuscles.Models.Data
 {
     // ******************* 
     // NOTE: Do NOT return an ApplicationUser as part of a json response.
@@ -14,6 +14,5 @@ namespace Capstone.Models.Data
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
     }
 }
