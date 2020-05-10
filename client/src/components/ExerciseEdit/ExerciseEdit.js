@@ -48,15 +48,20 @@ class ExerciseEdit extends React.Component {
   
 
     updateExerciseEvent = (e) => {
+      const { match: { params } } = this.props;
       const currentUser = getUser();
       const exerciseToUpdate = this.state.exercise;
       e.preventDefault();
       const updatedExercise = {
-        name: this.state.exerciseName,
-        muscleGroupId: this.state.exerciseMuscleGroup,
-        userId: currentUser.Id,
+        Id: parseInt(params.id),
+        Name: this.state.exerciseName,
+        MuscleGroupId: this.state.exerciseMuscleGroup,
+        UserId: currentUser.id,
       };
+      console.log(updatedExercise);
       exerciseData.updateExercise(exerciseToUpdate.id, updatedExercise);
+      this.props.history.push('/api/Exercises');
+      exerciseData.getAllExercises();
       this.setState({ exerciseName: '', exerciseMuscleGroup: '' });
     }
 
@@ -66,10 +71,8 @@ class ExerciseEdit extends React.Component {
     }
   
     muscleGroupChange = (e) => {
-      // const muscleGroups = muscleGroupData.getAllMuscleGroups();
       e.preventDefault();
-      // const selectedMG = muscleGroups.filter((x) => x.Id === e.target.value)
-      this.setState({ exerciseMuscleGroup: e.target.value });
+      this.setState({ exerciseMuscleGroup: parseInt(e.target.value) });
     }
 
     render() {

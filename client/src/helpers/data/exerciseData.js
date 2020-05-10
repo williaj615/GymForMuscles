@@ -33,7 +33,7 @@ const saveExercise = (exerciseInfo) => axios.post(`/api/exercises`, exerciseInfo
 
 const removeExercise = (exerciseId) => axios.delete(`localhost:5001/api/Exercises/${exerciseId}`);
 
-const updateExercise = (exerciseId, updatedExercise) => axios.put(`/api/Exercises/${exerciseId}`, updatedExercise);
+const updateExercise = (exerciseId, updatedExercise) => axios.put(`/api/exercises/${exerciseId}`, updatedExercise);
 
 export default {
   getAllExercises, saveExercise, removeExercise, updateExercise, getSingleExercise

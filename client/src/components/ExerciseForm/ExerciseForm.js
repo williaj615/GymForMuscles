@@ -48,7 +48,7 @@ class ExerciseForm extends React.Component {
     const newExercise = {
       name: this.state.exerciseName,
       muscleGroupId: parseInt(this.state.exerciseMuscleGroup),
-      userId: currentUser.Id
+      userId: currentUser.id
     };
     addExercise(newExercise);
     this.setState({ exerciseName: '', exerciseMuscleGroup: ''});
