@@ -46,7 +46,6 @@ class ExerciseEdit extends React.Component {
 
     }
   
-
     updateExerciseEvent = (e) => {
       const { match: { params } } = this.props;
       const currentUser = getUser();

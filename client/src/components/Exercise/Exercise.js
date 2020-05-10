@@ -4,6 +4,7 @@ import exerciseShape from '../../helpers/propz/exerciseShape';
 import './Exercise.scss';
 import { getUser } from '../../API/userManager';
 import { Link, withRouter } from 'react-router-dom';
+import exerciseData from '../../helpers/data/exerciseData';
 
 class Exercise extends React.Component {
 static propTypes = {
@@ -25,6 +26,7 @@ removeExerciseEvent = (e) => {
   e.preventDefault();
   const { removeSingleExercise, exercise } = this.props;
   removeSingleExercise(exercise.id);
+  exerciseData.getAllExercises();
 }
 
 render() {
@@ -38,7 +40,11 @@ render() {
       {
       (exercise.userId === currentUser.id) ? 
       <Link  className="edit-button btn btn-info" to={`/api/Exercises/${exercise.id}/edit`} exercise={exercise} exerciseid={`${exercise.id}`} >Edit Exercise </Link>
-      : <empty></empty>}
+      : <div></div>}
+      {
+      (exercise.userId === currentUser.id) ? 
+      <button className="delete-button btn btn-danger mb-2" onClick={this.removeExerciseEvent}>Remove Exercise</button>
+      : <div></div>}
     </div>
   );
 }
