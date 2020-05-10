@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect, BrowserRouter as Router, Route } from "react-router-dom";
 import ApplicationViews from "../components/ApplicationViews";
 import Header from "../components/MyNavBar/Header";
 import Login from "../components/Auth/Login";
@@ -7,6 +7,7 @@ import Register from "../components/Auth/Register";
 import { getUser } from "../API/userManager";
 import "./App.css";
 import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
+import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 
 class App extends React.Component {
 
@@ -35,6 +36,8 @@ class App extends React.Component {
           path="/api/Exercises"
           render={() => (getUser() ? <ExerciseLibrary /> : <Redirect to="/login" />)}
         />
+        <Route
+          path="/api/Exercises/:id/edit" component={ExerciseEdit} />
         
       </Router>
     </div>

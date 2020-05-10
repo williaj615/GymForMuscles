@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getUser } from "../../API/userManager";
 import exerciseShape from '../../helpers/propz/exerciseShape';
 import muscleGroupData from '../../helpers/data/muscleGroupData';
+import exerciseData from '../../helpers/data/exerciseData';
 
 class ExerciseForm extends React.Component {
   static propTypes = {
@@ -10,23 +11,24 @@ class ExerciseForm extends React.Component {
     setCancelAdd: PropTypes.func,
     exerciseToUpdate: exerciseShape.exerciseShape,
     editMode: PropTypes.bool,
-    updateExercise: PropTypes.func
+    updateExercise: PropTypes.func,
+    exercise: exerciseShape.exerciseShape,
+    setEdtMode: PropTypes.func
+  
   }
 
   state = {
     exerciseName: '',
     exerciseMuscleGroup: '',
     mGroups: [],
-    selectedMG: ""
+    
+    
     
 
   }
 
   componentDidMount() {
-    // const { exerciseToUpdate, editMode } = this.props;
-    // if (editMode) {
-    //   this.setState({ exerciseImageUrl: exerciseToUpdate.imageUrl, exerciseName: exerciseToUpdate.name, exercisePosition: exerciseToUpdate.position });
-    // }
+    
     muscleGroupData.getAllMuscleGroups()
     .then(data => {
         let groups = data.map(group => {
@@ -40,26 +42,18 @@ class ExerciseForm extends React.Component {
 
   saveExerciseEvent = (e) => {
     const { addExercise } = this.props;
+    const currentUser = getUser();
 
     e.preventDefault();
     const newExercise = {
       name: this.state.exerciseName,
-      muscleGroupId: parseInt(this.state.exerciseMuscleGroup)
+      muscleGroupId: parseInt(this.state.exerciseMuscleGroup),
+      userId: currentUser.Id
     };
     addExercise(newExercise);
     this.setState({ exerciseName: '', exerciseMuscleGroup: ''});
   }
 
-  updateExerciseEvent = (e) => {
-    e.preventDefault();
-    const { updateExercise, exerciseToUpdate } = this.props;
-    const updatedExercise = {
-      name: this.state.exerciseName,
-      muscleGroupId: this.state.exerciseMuscleGroup,
-      uid: exerciseToUpdate.uid,
-    };
-    updateExercise(exerciseToUpdate.id, updatedExercise);
-  }
 
   nameChange = (e) => {
     e.preventDefault();
@@ -75,7 +69,6 @@ class ExerciseForm extends React.Component {
 
 
   render() {
-    const { editMode } = this.props;
   
     return (
       <form className='col-6 offset-3 ExerciseForm'>
@@ -96,12 +89,8 @@ class ExerciseForm extends React.Component {
           {this.state.mGroups.map((group) => <option key={group.value} value={group.value}>{group.display}</option>)}
         </select>
       </div>
-      {}
-      {
-          (editMode) ? (<button className="btn btn-warning m-2" onClick={this.updateExerciseEvent}>Update Exercise</button>)
-            : (<button className="btn btn-warning m-2" onClick={this.saveExerciseEvent}>Save Exercise</button>)
-        }
-        <button className="btn btn-danger m-2" onClick={this.setCancelAdd}>Cancel</button>
+      <button className="btn btn-warning m-2" onClick={this.saveExerciseEvent}>Save Exercise</button>
+      <button className="btn btn-danger m-2" onClick={this.setCancelAdd}>Cancel</button>
     </form>
     );
   }

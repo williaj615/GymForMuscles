@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import exerciseShape from '../../helpers/propz/exerciseShape';
 import './Exercise.scss';
+import { getUser } from '../../API/userManager';
+import { Link, withRouter } from 'react-router-dom';
 
 class Exercise extends React.Component {
 static propTypes = {
@@ -13,10 +15,10 @@ static propTypes = {
 }
 
 setEditModeEvent = (e) => {
-  const { setEditMode, setExerciseToUpdate, exercise } = this.props;
+  const { setEditMode } = this.props;
   e.preventDefault();
   setEditMode(true);
-  setExerciseToUpdate(exercise);
+  // setExerciseToUpdate(exercise);
 }
 
 removeExerciseEvent = (e) => {
@@ -26,16 +28,20 @@ removeExerciseEvent = (e) => {
 }
 
 render() {
+  const currentUser = getUser();
   const { exercise } = this.props;
   return (
     <div className="card exercise-card col-3 m-3">
       <h3>{exercise.name}</h3>
       <p>Target: {exercise.muscleGroup.name}</p>
-      {/* <button className="delete-button btn btn-danger mb-2" onClick={this.removePlayerEvent}>Remove Player</button>
-      <button className="edit-button btn btn-info" onClick={this.setEditModeEvent}>Edit Player</button> */}
+      {/* <button className="delete-button btn btn-danger mb-2" onClick={this.removePlayerEvent}>Remove Player</button> */}
+      {
+      (exercise.userId === currentUser.id) ? 
+      <Link  className="edit-button btn btn-info" to={`/api/Exercises/${exercise.id}/edit`} exercise={exercise} exerciseid={`${exercise.id}`} >Edit Exercise </Link>
+      : <empty></empty>}
     </div>
   );
 }
 }
 
-export default Exercise;
+export default withRouter(Exercise);

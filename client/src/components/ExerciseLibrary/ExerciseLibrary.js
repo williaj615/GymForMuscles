@@ -9,7 +9,6 @@ state = {
   exercises: [],
   displayExerciseForm: false,
   editMode: false,
-  exerciseToUpdate: {},
 }
 
 getExercises = () => {
@@ -58,22 +57,23 @@ setEditMode = (editMode) => {
   this.setState({ editMode, displayExerciseForm: true });
 }
 
-setExerciseToUpdate = (Exercise) => {
-  this.setState({ ExerciseToUpdate: Exercise });
-}
+// setExerciseToUpdate = (Exercise) => {
+//   this.setState({ ExerciseToUpdate: Exercise });
+// }
 
 componentDidMount() {
   this.getExercises();
 }
 
 render() {
-  const { editMode, ExerciseToUpdate } = this.state;
+  const { editMode, exercises } = this.state;
+  console.log(exercises);
   return (
     <div>
       <button className="btn btn-secondary m-3" onClick={this.setDisplayExerciseForm}>Add an Exercise</button>
-      { this.state.displayExerciseForm && (<ExerciseForm addExercise={this.addExercise} setCancelAdd={this.setCancelAdd} editMode={editMode} ExerciseToUpdate={ExerciseToUpdate} updateExercise={this.updateExercise}/>)}
+      { this.state.displayExerciseForm && (<ExerciseForm addExercise={this.addExercise} setCancelAdd={this.setCancelAdd} editMode={editMode} updateExercise={this.updateExercise}/>)}
       <div id="Exercises-container" className="d-flex flex-row flex-wrap justify-content-around">
-        {this.state.exercises.map((exercise) => (<Exercise key={exercise.id} exercise={exercise} removeSingleExercise={this.removeSingleExercise} setEditMode={this.setEditMode} setExerciseToUpdate={this.setExerciseToUpdate} />))}
+        {exercises.map((exercise) => (<Exercise key={exercise.id} exercise={exercise} setDisplayExerciseForm={this.state.setDisplayExerciseForm} removeSingleExercise={this.removeSingleExercise} setEditMode={this.setEditMode} />))}
       </div>
     </div>
   );
