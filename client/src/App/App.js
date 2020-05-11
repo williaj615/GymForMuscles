@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, BrowserRouter as Router, Route } from "react-router-dom";
-import ApplicationViews from "../components/ApplicationViews";
 import Header from "../components/MyNavBar/Header";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
@@ -10,6 +9,7 @@ import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
 import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
+import Home from '../components/Home';
 
 class App extends React.Component {
 
@@ -19,8 +19,9 @@ class App extends React.Component {
       <Router>
         <Header />
         <Route
+          path="/Home"
           render={() =>
-            getUser() ? <ApplicationViews /> : <Redirect to="/login" />
+            getUser() ? <Home /> : <Redirect to="/login" />
           }
         />
         <Route
