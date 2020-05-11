@@ -34,7 +34,10 @@ namespace GymForMuscles.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Workout>> GetWorkout(int id)
         {
-            var workout = await _context.Workout.FindAsync(id);
+            var workout = await _context.Workout
+                .Include(w => w.Category)
+                .FirstOrDefaultAsync(w => w.Id == id);
+                
 
             if (workout == null)
             {

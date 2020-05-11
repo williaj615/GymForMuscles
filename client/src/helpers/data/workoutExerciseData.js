@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const getWExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) => {
-  axios.get(`/api/WorkoutExercises`)
+  axios.get(`/api/WorkoutExercises?workoutId=${workoutId}`)
     .then((result) => {
       const allWExercisesObj = result.data;
       const wExercises = [];
@@ -19,4 +19,4 @@ const getWExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) =>
     });
 });
 
-export default { getExercisesByWorkoutId };
+export default { getWExercisesByWorkoutId };

@@ -9,6 +9,7 @@ import "./App.css";
 import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
+import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
 
 class App extends React.Component {
 
@@ -45,6 +46,8 @@ class App extends React.Component {
           path="/api/Workouts"
           render={() => (getUser() ? <WorkoutLibrary /> : <Redirect to="/login" />)}
         />
+        <Route
+        path="/api/Workouts/:id"  component={SingleWorkout} /> 
       </Router>
     </div>
   );

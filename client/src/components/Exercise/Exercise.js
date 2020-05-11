@@ -9,9 +9,7 @@ import exerciseData from '../../helpers/data/exerciseData';
 class Exercise extends React.Component {
 static propTypes = {
   exercise: exerciseShape.exerciseShape,
-  removeSingleExercise: PropTypes.func,
-  
-
+  removeSingleExercise: PropTypes.func
 }
 
 setEditModeEvent = (e) => {

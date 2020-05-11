@@ -23,6 +23,7 @@ class WorkoutLibrary extends React.Component {
         .catch((errOnRemoveWorkout) => console.error(errOnRemoveWorkout))
     }
 
+
     componentDidMount() {
         this.getWorkouts();
     }

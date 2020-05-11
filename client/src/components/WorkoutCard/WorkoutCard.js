@@ -26,6 +26,7 @@ class WorkoutCard extends React.Component {
             <div className="card workout-card col-3 m-3">
             <h3>{workout.name}</h3>
             <p>{workout.category.name}</p>
+            <Link className="btn btn-dark" to={`/api/Workouts/${workout.id}`}>See Workout Details</Link>
             {
             (workout.userId === currentUser.id) ? 
             <Link  className="edit-button btn btn-info" to={`/api/Workouts/${workout.id}/edit`} workout={workout} workoutid={`${workout.id}`} >Edit Workout </Link>
