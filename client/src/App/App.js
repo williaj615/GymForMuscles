@@ -8,6 +8,7 @@ import { getUser } from "../API/userManager";
 import "./App.css";
 import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
+import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
 
 class App extends React.Component {
 
@@ -39,6 +40,11 @@ class App extends React.Component {
         <Route
           path="/api/Exercises/:id/edit" component={ExerciseEdit} />
         
+        <Route
+          exact
+          path="/api/Workouts"
+          render={() => (getUser() ? <WorkoutLibrary /> : <Redirect to="/login" />)}
+        />
       </Router>
     </div>
   );

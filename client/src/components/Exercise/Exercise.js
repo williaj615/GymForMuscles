@@ -10,8 +10,7 @@ class Exercise extends React.Component {
 static propTypes = {
   exercise: exerciseShape.exerciseShape,
   removeSingleExercise: PropTypes.func,
-  setEditMode: PropTypes.func,
-  setExerciseToUpdate: PropTypes.func,
+  
 
 }
 
@@ -36,7 +35,6 @@ render() {
     <div className="card exercise-card col-3 m-3">
       <h3>{exercise.name}</h3>
       <p>Target: {exercise.muscleGroup.name}</p>
-      {/* <button className="delete-button btn btn-danger mb-2" onClick={this.removePlayerEvent}>Remove Player</button> */}
       {
       (exercise.userId === currentUser.id) ? 
       <Link  className="edit-button btn btn-info" to={`/api/Exercises/${exercise.id}/edit`} exercise={exercise} exerciseid={`${exercise.id}`} >Edit Exercise </Link>
