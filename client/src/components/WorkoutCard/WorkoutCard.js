@@ -14,8 +14,8 @@ class WorkoutCard extends React.Component {
 
     removeWorkoutEvent = (e) => {
         e.preventDefault();
-        const { removeSingleWorkout, workout } = this.props;
-        removeSingleWorkout(workout.id);
+        const { workout } = this.props;
+        workoutData.removeWorkout(workout.id);
         workoutData.getAllWorkouts();
     }
 

@@ -10,6 +10,7 @@ import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
 import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
 import Home from '../components/Home';
+import WorkoutForm from '../components/WorkoutForm/WorkoutForm';
 
 class App extends React.Component {
 
@@ -46,6 +47,11 @@ class App extends React.Component {
           exact
           path="/api/Workouts"
           render={() => (getUser() ? <WorkoutLibrary /> : <Redirect to="/login" />)}
+        />
+        <Route
+          exact
+          path="/Workouts/new"
+          render={() => (getUser() ? <WorkoutForm /> : <Redirect to="/login" />)}
         />
         <Route
         path="/api/Workouts/:id"  component={SingleWorkout} /> 

@@ -1,6 +1,7 @@
 import React from 'react';
 import workoutData from '../../helpers/data/workoutData';
 import WorkoutCard from '../WorkoutCard/WorkoutCard';
+import { Link } from 'react-router-dom';
 
 class WorkoutLibrary extends React.Component {
     state = {
@@ -32,7 +33,7 @@ class WorkoutLibrary extends React.Component {
         const { workouts } = this.state;
         return (
             <div>
-      <button className="btn btn-secondary m-3">Add an Exercise</button>
+      <Link className="btn btn-secondary m-3" to="/Workouts/new">Create a new Workout</Link>
       <div id="Workouts-container" className="d-flex flex-row flex-wrap justify-content-around">
         {workouts.map((workout) => (<WorkoutCard key={workout.id} workout={workout} removeSingleExercise={this.removeSingleExercise}/>))}
       </div>

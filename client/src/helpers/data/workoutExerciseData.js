@@ -19,4 +19,6 @@ const getWExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) =>
     });
 });
 
-export default { getWExercisesByWorkoutId };
+const createWExercise = (newWex) => axios.post(`/api/WorkoutExercises`, newWex)
+
+export default { getWExercisesByWorkoutId, createWExercise };
