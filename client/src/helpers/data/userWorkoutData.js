@@ -19,5 +19,6 @@ const getUserWorkouts = (userid) => new Promise((resolve, reject) => {
 });
 
 const createUserWorkout = (newUW) =>  axios.post(`/api/UserWorkouts`, newUW)
+const deleteUserWorkout = (uwId) => axios.delete(`/api/UserWorkouts/${uwId}`)
 
-export default { getUserWorkouts, createUserWorkout };
+export default { getUserWorkouts, createUserWorkout, deleteUserWorkout };

@@ -18,9 +18,14 @@ class WorkoutQueue extends React.Component {
                 this.setState({ userWorkouts: workouts})
             }
             else {}
-            console.log(workouts);
         })
         .catch((errOnWorkoutQueue) => console.error(errOnWorkoutQueue))
+    }
+
+    removeFromUserQueue = (e) => {
+        e.preventDefault();
+        const uwId = e.target.id
+        userWorkoutData.deleteUserWorkout(uwId);
     }
 
     render () {
@@ -30,9 +35,10 @@ class WorkoutQueue extends React.Component {
                 <h1>These are your queued workouts.</h1>
                 <div>
                     {userWorkouts.map((workout) => 
-                    <div key={workout.id} className="card q-workout-card">
+                    <div key={workout.id} workout={workout} className="card q-workout-card">
                         <p>{workout.workout.name}</p>
                         <p>Category: {workout.workout.category.name}</p>
+                        <button id={workout.id} onClick={this.removeFromUserQueue}>Remove from queue</button>
                     </div>)}
                 </div>
             </div>
