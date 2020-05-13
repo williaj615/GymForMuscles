@@ -18,4 +18,6 @@ const getUserWorkouts = (userid) => new Promise((resolve, reject) => {
     });
 });
 
-export default { getUserWorkouts };
+const createUserWorkout = (newUW) =>  axios.post(`/api/UserWorkouts`, newUW)
+
+export default { getUserWorkouts, createUserWorkout };
