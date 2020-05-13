@@ -23,11 +23,27 @@ namespace GymForMuscles.Controllers
 
         // GET: api/Workouts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Workout>>> GetWorkout()
+        public async Task<ActionResult<IEnumerable<Workout>>> GetWorkout([FromQuery] string query)
         {
-            return await _context.Workout
-                .Include(w => w.Category)
-                .ToListAsync();
+            if (query != null)
+            {
+                var workouts = await _context.Workout
+                    .Where(w =>
+                        w.Name.Contains(query) ||
+                        w.Category.Name.Contains(query))
+                    .Include(w => w.Category)
+                    .ToListAsync();
+
+                return workouts;
+            }
+            else
+            {
+                var workouts = await _context.Workout
+                    .Include(w => w.Category)
+                    .ToListAsync();
+
+                return workouts;
+            }
         }
 
         // GET: api/Workouts/5
@@ -37,7 +53,7 @@ namespace GymForMuscles.Controllers
             var workout = await _context.Workout
                 .Include(w => w.Category)
                 .FirstOrDefaultAsync(w => w.Id == id);
-                
+
 
             if (workout == null)
             {

@@ -5,11 +5,18 @@ import { Link } from 'react-router-dom';
 
 class WorkoutLibrary extends React.Component {
     state = {
-        workouts: []
+        workouts: [],
+        query: ''
     }
 
+    handleInputChange = () => {
+        this.setState({
+          query: this.search.value
+        })
+      }
+
     getWorkouts = () => {
-        workoutData.getAllWorkouts()
+        workoutData.getAllWorkouts(this.state.query)
         .then((workouts) => {
             this.setState({ workouts });
         })
@@ -33,6 +40,14 @@ class WorkoutLibrary extends React.Component {
         const { workouts } = this.state;
         return (
             <div>
+                <form>
+                <input
+                    placeholder="Search for..."
+                    ref={input => this.search = input}
+                    onChange={this.handleInputChange}
+                    onKeyUp={this.getWorkouts}>
+                </input>
+                </form>
       <Link className="btn btn-secondary m-3" to="/Workouts/new">Create a new Workout</Link>
       <div id="Workouts-container" className="d-flex flex-row flex-wrap justify-content-around">
         {workouts.map((workout) => (<WorkoutCard key={workout.id} workout={workout} removeSingleExercise={this.removeSingleExercise}/>))}

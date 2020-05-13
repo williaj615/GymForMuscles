@@ -2,6 +2,7 @@ import React from 'react';
 import exerciseData from '../../helpers/data/exerciseData';
 import Exercise from '../Exercise/Exercise';
 import ExerciseForm from '../ExerciseForm/ExerciseForm';
+import ReactDOM from 'react-dom';
 
 
 class ExerciseLibrary extends React.Component {
@@ -9,10 +10,17 @@ state = {
   exercises: [],
   displayExerciseForm: false,
   editMode: false,
+  query: ''
+}
+
+handleInputChange = () => {
+  this.setState({
+    query: this.search.value
+  })
 }
 
 getExercises = () => {
-  exerciseData.getAllExercises()
+  exerciseData.getAllExercises(this.state.query)
     .then((exercises) => {
       this.setState({ exercises });
     })
@@ -49,19 +57,22 @@ setEditMode = (editMode) => {
   this.setState({ editMode, displayExerciseForm: true });
 }
 
-// setExerciseToUpdate = (Exercise) => {
-//   this.setState({ ExerciseToUpdate: Exercise });
-// }
-
 componentDidMount() {
   this.getExercises();
 }
 
 render() {
   const { editMode, exercises } = this.state;
-  console.log(exercises);
   return (
     <div>
+      <form>
+       <input
+         placeholder="Search for..."
+         ref={input => this.search = input}
+         onChange={this.handleInputChange}
+         onKeyUp={this.getExercises}>
+       </input>
+       </form>
       <button className="btn btn-secondary m-3" onClick={this.setDisplayExerciseForm}>Add an Exercise</button>
       { this.state.displayExerciseForm && (<ExerciseForm addExercise={this.addExercise} setCancelAdd={this.setCancelAdd} editMode={editMode} updateExercise={this.updateExercise}/>)}
       <div id="Exercises-container" className="d-flex flex-row flex-wrap justify-content-around">
