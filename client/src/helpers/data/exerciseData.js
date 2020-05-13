@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const getAllExercises = () => new Promise((resolve, reject) => {
-  axios.get(`/api/exercises`)
+const getAllExercises = (query) => new Promise((resolve, reject) => {
+  axios.get(`/api/exercises?query=${query}`)
     .then((result) => {
       const allExercisesObj = result.data;
       const exercises = [];
@@ -34,6 +34,8 @@ const saveExercise = (exerciseInfo) => axios.post(`/api/exercises`, exerciseInfo
 const removeExercise = (exerciseId) => axios.delete(`/api/exercises/${exerciseId}`);
 
 const updateExercise = (exerciseId, updatedExercise) => axios.put(`/api/exercises/${exerciseId}`, updatedExercise);
+
+// const searchExercises = (query) => axios.get(`api/exercises?query=${query}`);
 
 export default {
   getAllExercises, saveExercise, removeExercise, updateExercise, getSingleExercise

@@ -23,11 +23,29 @@ namespace GymForMuscles.Controllers
 
         // GET: api/Exercises
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Exercise>>> GetExercise()
+        public async Task<ActionResult<IEnumerable<Exercise>>> GetExercise([FromQuery] string query)
         {
-            return await _context.Exercise
+            if (query != null)
+            {
+                var exercises = await _context.Exercise
+                .Where(ex =>
+                    ex.Name.Contains(query) ||
+                    ex.MuscleGroup.Name.Contains(query))
                 .Include(ex => ex.MuscleGroup)
                 .ToListAsync();
+
+                return exercises;
+            }
+            else
+            {
+                var exercises = await _context.Exercise
+                    .Include(ex => ex.MuscleGroup)
+                .ToListAsync();
+
+                return exercises;
+            }
+
+
         }
 
         // GET: api/Exercises/5
@@ -44,6 +62,29 @@ namespace GymForMuscles.Controllers
 
             return exercise;
         }
+        //[HttpGet][FromForm]
+        //public async Task<ActionResult<IEnumerable<Exercise>>> Search(string query)
+        //{
+        //    if (query != null)
+        //    {
+        //        var exercises = await _context.Exercise
+        //        .Where(ex =>
+        //            ex.Name.Contains(query) ||
+        //            ex.MuscleGroup.Name.Contains(query))
+        //        .Include(ex => ex.MuscleGroup)
+        //        .ToListAsync();
+
+        //        return exercises;
+        //    }
+        //    else { 
+        //        var exercises = await _context.Exercise
+        //            .Include(ex => ex.MuscleGroup)
+        //        .ToListAsync();
+
+        //        return exercises;
+        //    }
+            
+        //}
 
         // PUT: api/Exercises/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
