@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GymForMuscles.Data;
 using GymForMuscles.Models;
+using System.Globalization;
 
 namespace GymForMuscles.Controllers
 {
@@ -58,7 +59,6 @@ namespace GymForMuscles.Controllers
             {
                 return BadRequest();
             }
-
             _context.Entry(userWorkout).State = EntityState.Modified;
 
             try
