@@ -19,14 +19,6 @@ getExercises = () => {
     .catch((errOnExerciseLibrary) => console.error({ errOnExerciseLibrary }));
 }
 
-removeSingleExercise = (exerciseId) => {
-  exerciseData.removeExercise(exerciseId)
-    .then(() => {
-      this.getExercises();
-    })
-    .catch((errOnRemoveExercise) => console.error(errOnRemoveExercise));
-}
-
 addExercise = (newExercise) => {
   exerciseData.saveExercise(newExercise)
     .then(() => {

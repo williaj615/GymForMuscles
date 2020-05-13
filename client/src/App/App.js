@@ -9,9 +9,11 @@ import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
 import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
-import Home from '../components/Home';
+import Home from '../components/Home/Home';
 import WorkoutForm from '../components/WorkoutForm/WorkoutForm';
 import WorkoutEdit from "../components/WorkoutEdit/WorkoutEdit";
+import DeleteConfirm from '../components/DeleteConfirm/DeleteConfirm';
+import WorkoutDeleteConfirm from '../components/WorkoutDeleteConfirm/WorkoutDeleteConfirm';
 
 class App extends React.Component {
 
@@ -59,6 +61,12 @@ class App extends React.Component {
 
         <Route
         path="/Workouts/:id/edit"  component={WorkoutEdit} />
+
+        <Route
+        path="/Workouts/:id/delete" component={WorkoutDeleteConfirm} />
+
+        <Route
+        path="/Exercises/:id/delete" component={DeleteConfirm} />  
       </Router>
     </div>
   );

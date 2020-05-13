@@ -33,7 +33,7 @@ class WorkoutCard extends React.Component {
             : <div></div>}
             {
             (workout.userId === currentUser.id) ? 
-            <button className="delete-button btn btn-danger mb-2" onClick={this.removeWorkoutEvent}>Remove Workout</button>
+            <Link className="delete-button btn btn-danger mb-2" to={`/Workouts/${workout.id}/delete`}>Remove Workout</Link>
             : <div></div>}
             </div>
         )

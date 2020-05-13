@@ -19,13 +19,6 @@ setEditModeEvent = (e) => {
   // setExerciseToUpdate(exercise);
 }
 
-removeExerciseEvent = (e) => {
-  e.preventDefault();
-  const { removeSingleExercise, exercise } = this.props;
-  removeSingleExercise(exercise.id);
-  exerciseData.getAllExercises();
-}
-
 render() {
   const currentUser = getUser();
   const { exercise } = this.props;
@@ -39,7 +32,7 @@ render() {
       : <div></div>}
       {
       (exercise.userId === currentUser.id) ? 
-      <button className="delete-button btn btn-danger mb-2" onClick={this.removeExerciseEvent}>Remove Exercise</button>
+      <Link className="delete-button btn btn-danger mb-2" to={`/Exercises/${exercise.id}/delete`}>Remove Exercise</Link>
       : <div></div>}
     </div>
   );
