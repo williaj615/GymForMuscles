@@ -23,21 +23,17 @@ componentDidMount() {
     const workoutid = `${params.id}`
       workoutData.getSingleWorkout(parseInt(workoutid))
       .then((response) => {
+          console.log(response)
         let workout = response;
-        this.setState({ workout: workout, workoutName: workout.name, workoutCategory: workout.Category })
+        this.setState({ workout: workout, workoutName: workout.name, workoutCategory: workout.categoryId})
       })
-
     workoutExerciseData.getWExercisesByWorkoutId(workoutid)
     .then((exercises) => {
-        // exercises.forEach((wexercise) => {
-        //         aExercises.push(wexercise)
-        // })
         let mem = exercises.map(x => {
             return {value: x.exercise.id, label: x.exercise.name}
         })
         this.setState({ selectedExercises: mem})
     })
-
     exerciseData.getAllExercises()
       .then(data => {
           let libraryExercises = data.map(exercise => {
@@ -71,26 +67,35 @@ categoryChange = (e) => {
 
 
 
-saveWorkoutEvent = (e) => {
+updateWorkoutEvent = (e) => {
     const currentUser = getUser();
     const { selectedExercises } = this.state;
+    const { match: { params } } = this.props;
+    const workoutid = `${params.id}`
     e.preventDefault();
-    const newWorkout = {
+    workoutExerciseData.getWExercisesByWorkoutId(workoutid)
+    .then((exercises) => {
+        exercises.forEach((ex) => 
+        { workoutExerciseData.deleteWExercise(ex.id) })
+    })
+
+    const updatedWorkout = {
+        id: parseInt(workoutid),
       name: this.state.workoutName,
       categoryId: this.state.workoutCategory,
-      userId: currentUser.id
+      userId: currentUser.id.toString()
     };
-    workoutData.saveWorkout(newWorkout)
-    .then((response) => {
-        const createdWorkout = response.data;
-        selectedExercises.forEach((exercise) => {
-            const newWEx = {
-                workoutId: createdWorkout.id,
-                exerciseId: exercise.value
-            }
-            workoutExerciseData.createWExercise(newWEx);
-        })
+    workoutData.updateWorkout(parseInt(workoutid), updatedWorkout)
+
+    
+    selectedExercises.forEach((exercise) => {
+        const newWEx = {
+            workoutId: parseInt(workoutid),
+            exerciseId: exercise.value
+        }
+        workoutExerciseData.createWExercise(newWEx);
     })
+
     
 }
 
@@ -142,7 +147,7 @@ render() {
               {this.state.wCategories.map((category) => <option key={category.value} value={category.value}>{category.display}</option>)}
             </select>
           </div>
-          <button className="btn btn-warning m-2" onClick={this.saveWorkoutEvent}>Save Workout</button>
+          <button className="btn btn-warning m-2" onClick={this.updateWorkoutEvent}>Update Workout</button>
           <button className="btn btn-danger m-2" onClick={this.setCancelAdd}>Cancel</button>
         </form>
     )
