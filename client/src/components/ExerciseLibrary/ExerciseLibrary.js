@@ -19,15 +19,6 @@ handleInputChange = () => {
   })
 }
 
-// getQueryExercises = (e) => {
-//   e.preventDefault();
-//   exerciseData.searchExercises(this.state.query)
-//   .then((queryExercises) =>
-//   console.log(queryExercises)
-//   // this.setState({ exercises: queryExercises})
-//   )
-// }
-
 getExercises = () => {
   exerciseData.getAllExercises(this.state.query)
     .then((exercises) => {

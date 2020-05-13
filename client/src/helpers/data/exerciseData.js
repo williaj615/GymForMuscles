@@ -35,8 +35,6 @@ const removeExercise = (exerciseId) => axios.delete(`/api/exercises/${exerciseId
 
 const updateExercise = (exerciseId, updatedExercise) => axios.put(`/api/exercises/${exerciseId}`, updatedExercise);
 
-// const searchExercises = (query) => axios.get(`api/exercises?query=${query}`);
-
 export default {
   getAllExercises, saveExercise, removeExercise, updateExercise, getSingleExercise
 };

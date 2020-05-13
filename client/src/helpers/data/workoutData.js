@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-const getAllWorkouts = () => new Promise((resolve, reject) => {
-  axios.get(`/api/workouts`)
+const getAllWorkouts = (query) => new Promise((resolve, reject) => {
+  axios.get(`/api/workouts?query=${query}`)
     .then((result) => {
       const allWorkoutsObj = result.data;
       const workouts = [];
