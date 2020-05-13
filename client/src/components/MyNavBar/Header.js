@@ -16,7 +16,7 @@ function Header({ history }) {
         {user ? (
           <>
             <Link className="nav-item nav-link" to="/api/Exercises">Exercise Library</Link>
-            <li className="nav-item nav-link">Workout Library</li>
+            <Link className="nav-item nav-link" to="/api/Workouts">Workout Library</Link>
             <li className="nav-item nav-link">Your Workout History</li>
             <li className="nav-item">Hello {user.firstName}</li>
             <li className="nav-item" onClick={logout}>

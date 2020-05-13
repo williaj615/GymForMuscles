@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, BrowserRouter as Router, Route } from "react-router-dom";
-import ApplicationViews from "../components/ApplicationViews";
 import Header from "../components/MyNavBar/Header";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
@@ -8,6 +7,13 @@ import { getUser } from "../API/userManager";
 import "./App.css";
 import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
+import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
+import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
+import Home from '../components/Home/Home';
+import WorkoutForm from '../components/WorkoutForm/WorkoutForm';
+import WorkoutEdit from "../components/WorkoutEdit/WorkoutEdit";
+import DeleteConfirm from '../components/DeleteConfirm/DeleteConfirm';
+import WorkoutDeleteConfirm from '../components/WorkoutDeleteConfirm/WorkoutDeleteConfirm';
 
 class App extends React.Component {
 
@@ -17,8 +23,9 @@ class App extends React.Component {
       <Router>
         <Header />
         <Route
+          path="/Home"
           render={() =>
-            getUser() ? <ApplicationViews /> : <Redirect to="/login" />
+            getUser() ? <Home /> : <Redirect to="/login" />
           }
         />
         <Route
@@ -39,6 +46,27 @@ class App extends React.Component {
         <Route
           path="/api/Exercises/:id/edit" component={ExerciseEdit} />
         
+        <Route
+          exact
+          path="/api/Workouts"
+          render={() => (getUser() ? <WorkoutLibrary /> : <Redirect to="/login" />)}
+        />
+        <Route
+          exact
+          path="/Workouts/new"
+          render={() => (getUser() ? <WorkoutForm /> : <Redirect to="/login" />)}
+        />
+        <Route
+        path="/api/Workouts/:id"  component={SingleWorkout} /> 
+
+        <Route
+        path="/Workouts/:id/edit"  component={WorkoutEdit} />
+
+        <Route
+        path="/Workouts/:id/delete" component={WorkoutDeleteConfirm} />
+
+        <Route
+        path="/Exercises/:id/delete" component={DeleteConfirm} />  
       </Router>
     </div>
   );
