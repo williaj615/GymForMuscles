@@ -2,6 +2,8 @@ import React from 'react';
 import workoutShape from '../../helpers/propz/workoutShape';
 import workoutData from '../../helpers/data/workoutData';
 import workoutExerciseData from '../../helpers/data/workoutExerciseData';
+import { getUser } from '../../API/userManager';
+import userWorkoutData from '../../helpers/data/userWorkoutData';
 
 class SingleWorkout extends React.Component {
     static propTypes = {
@@ -32,6 +34,20 @@ class SingleWorkout extends React.Component {
         
     }
 
+    addToUserQueue = (e) => {
+        e.preventDefault();
+        const { match: { params } } = this.props;
+
+        const workoutid = `${params.id}`
+        const currentUser = getUser();
+        const newUserWorkout = {
+            userId: currentUser.id,
+            workoutId: parseInt(workoutid)
+        }
+        userWorkoutData.createUserWorkout(newUserWorkout);
+        console.log(currentUser.id)
+    }
+
     render() {
         const { workoutName, workoutExercises, workoutCategory } = this.state;
         return (
@@ -43,6 +59,7 @@ class SingleWorkout extends React.Component {
                 <p>{exercise.exercise.name}</p>
                 </div>))}
             </div>
+            <button className="btn btn-dark" onClick={this.addToUserQueue}>Add to my queue</button>
         </div>
         )
         

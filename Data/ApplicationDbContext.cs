@@ -192,7 +192,7 @@ namespace GymForMuscles.Data
                     Id = 1,
                     UserId = "07b84166-2ebc-4e50-949e-ba84b6eb7b07",
                     WorkoutId = 3,
-                    DateCompleted = null
+                    DateCompleted = ""
                 });
 
             //Create WorkoutExercises

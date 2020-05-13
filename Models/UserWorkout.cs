@@ -14,6 +14,6 @@ namespace GymForMuscles.Models
         public int WorkoutId { get; set; }
         public Workout Workout { get; set; }
 
-        public DateTime? DateCompleted { get; set; }
+        public string? DateCompleted { get; set; }
     }
 }

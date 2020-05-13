@@ -14,6 +14,7 @@ import WorkoutForm from '../components/WorkoutForm/WorkoutForm';
 import WorkoutEdit from "../components/WorkoutEdit/WorkoutEdit";
 import DeleteConfirm from '../components/DeleteConfirm/DeleteConfirm';
 import WorkoutDeleteConfirm from '../components/WorkoutDeleteConfirm/WorkoutDeleteConfirm';
+import HistoryView from '../components/HistoryView/HistoryView';
 
 class App extends React.Component {
 
@@ -67,6 +68,9 @@ class App extends React.Component {
 
         <Route
         path="/Exercises/:id/delete" component={DeleteConfirm} />  
+
+        <Route
+        path="/WorkoutHistory" component={HistoryView} />
       </Router>
     </div>
   );
