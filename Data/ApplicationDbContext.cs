@@ -107,49 +107,57 @@ namespace GymForMuscles.Data
                 {
                     Id = 1,
                     Name = "Lunges",
-                    MuscleGroupId = 2
+                    MuscleGroupId = 2,
+                    UserId = "6fc2c55b-bea6-4d9a-a08a-570b98e5b649"
                 },
                 new Exercise()
                 {
                     Id = 2,
                     Name = "Squats",
-                    MuscleGroupId = 2
+                    MuscleGroupId = 2,
+                    UserId = "07b84166-2ebc-4e50-949e-ba84b6eb7b07"
                 },
                 new Exercise()
                 {
                     Id = 3,
                     Name = "Bench Press",
-                    MuscleGroupId = 6
+                    MuscleGroupId = 6,
+                    UserId = "6fc2c55b-bea6-4d9a-a08a-570b98e5b649"
                 },
                 new Exercise()
                 {
                     Id = 4,
                     Name = "Overhead Press",
-                    MuscleGroupId = 9
+                    MuscleGroupId = 9,
+                    UserId = "07b84166-2ebc-4e50-949e-ba84b6eb7b07"
                 },
                 new Exercise()
                 {
                     Id = 5,
                     Name = "Deadlift",
-                    MuscleGroupId = 7
+                    MuscleGroupId = 7,
+                    UserId = "6fc2c55b-bea6-4d9a-a08a-570b98e5b649"
                 },
                 new Exercise()
                 {
                     Id = 6,
                     Name = "Dumbbell Curl",
-                    MuscleGroupId = 1
+                    MuscleGroupId = 1,
+                    UserId = "07b84166-2ebc-4e50-949e-ba84b6eb7b07"
                 },
                 new Exercise()
                 {
                     Id = 7,
                     Name = "Tricep Extension",
-                    MuscleGroupId = 3
+                    MuscleGroupId = 3,
+                    UserId = "6fc2c55b-bea6-4d9a-a08a-570b98e5b649"
                 },
                 new Exercise()
                 {
                     Id = 8,
                     Name = "Pull Up",
-                    MuscleGroupId = 1
+                    MuscleGroupId = 1,
+                    UserId = "07b84166-2ebc-4e50-949e-ba84b6eb7b07"
                 });
 
             //Create Workouts
