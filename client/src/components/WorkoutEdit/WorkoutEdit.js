@@ -6,9 +6,10 @@ import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import categoryData from '../../helpers/data/categoryData';
 import workoutExerciseData from '../../helpers/data/workoutExerciseData';
 
-class WorkoutForm extends React.Component {
+class WorkoutEdit extends React.Component {
 
 state = {
+    workout: {},
     exercises: [],
     selectedExercises: [],
     workoutName: '',
@@ -17,7 +18,25 @@ state = {
 }
 
 componentDidMount() {
+    const { match: { params } } = this.props;
+    const aExercises = [];
+    const workoutid = `${params.id}`
+      workoutData.getSingleWorkout(parseInt(workoutid))
+      .then((response) => {
+        let workout = response;
+        this.setState({ workout: workout, workoutName: workout.name, workoutCategory: workout.Category })
+      })
 
+    workoutExerciseData.getWExercisesByWorkoutId(workoutid)
+    .then((exercises) => {
+        // exercises.forEach((wexercise) => {
+        //         aExercises.push(wexercise)
+        // })
+        let mem = exercises.map(x => {
+            return {value: x.exercise.id, label: x.exercise.name}
+        })
+        this.setState({ selectedExercises: mem})
+    })
 
     exerciseData.getAllExercises()
       .then(data => {
@@ -82,7 +101,7 @@ cancelAdd = () => {
 }
 
 getSelectedExercises = (selectedOptions) => {
-    this.setState({ selectedExercises: selectedOptions})
+    this.setState({ selectedExercises: selectedOptions })
 }
 
 componentWillUnmount() {
@@ -95,6 +114,7 @@ componentWillUnmount() {
 
 render() {
     const { exercises, selectedExercises, selectedOption } = this.state;
+
     return (
         <form className='col-6 offset-3 WorkoutForm'>
           <div className="form-group">
@@ -112,7 +132,7 @@ render() {
           <ReactMultiSelectCheckboxes 
           options={exercises}
           isMulti
-          value={selectedOption}
+          value={selectedExercises}
           onChange={this.getSelectedExercises}
            />
           </div>
@@ -129,4 +149,4 @@ render() {
 }
 }
 
-export default WorkoutForm;
+export default WorkoutEdit;

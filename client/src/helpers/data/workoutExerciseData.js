@@ -21,4 +21,6 @@ const getWExercisesByWorkoutId = (workoutId) => new Promise((resolve, reject) =>
 
 const createWExercise = (newWex) => axios.post(`/api/WorkoutExercises`, newWex)
 
-export default { getWExercisesByWorkoutId, createWExercise };
+const deleteWExercise = (wexid) => axios.delete(`/api/WorkoutExercises/${wexid}`)
+
+export default { getWExercisesByWorkoutId, createWExercise, deleteWExercise };

@@ -11,6 +11,7 @@ import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
 import SingleWorkout from '../components/SingleWorkout/SingleWorkout';
 import Home from '../components/Home';
 import WorkoutForm from '../components/WorkoutForm/WorkoutForm';
+import WorkoutEdit from "../components/WorkoutEdit/WorkoutEdit";
 
 class App extends React.Component {
 
@@ -55,6 +56,9 @@ class App extends React.Component {
         />
         <Route
         path="/api/Workouts/:id"  component={SingleWorkout} /> 
+
+        <Route
+        path="/Workouts/:id/edit"  component={WorkoutEdit} />
       </Router>
     </div>
   );
