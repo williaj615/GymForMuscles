@@ -1,5 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+
 .App {
   text-align: center;
+  background-color: #2f4f4f;
+  height: 100%;
+}
+
+.body {
+  background-color: #2F4F4F;
 }
 
 .header {
@@ -35,4 +43,8 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.card {
+  background-color: #282c34;
 }

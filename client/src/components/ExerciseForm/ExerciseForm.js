@@ -73,7 +73,7 @@ class ExerciseForm extends React.Component {
     return (
       <form className='col-6 offset-3 ExerciseForm'>
       <div className="form-group">
-        <label htmlFor="exercise-name">Exercise Name:</label>
+        <label htmlFor="exercise-name">Exercise Name: </label>
         <input
           type="text"
           className="form-control"
@@ -84,8 +84,8 @@ class ExerciseForm extends React.Component {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="exercise-muscleGroup">Exercise Muscle Group:</label>
-        <select value={this.state.exerciseMuscleGroup} onChange={this.muscleGroupChange}>
+        <label htmlFor="exercise-muscleGroup">Exercise Muscle Group: </label>
+        <select className="mg-input ml-1" value={this.state.exerciseMuscleGroup} onChange={this.muscleGroupChange}>
           {this.state.mGroups.map((group) => <option key={group.value} value={group.value}>{group.display}</option>)}
         </select>
       </div>

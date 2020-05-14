@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { getUser, removeUser } from "../../API/userManager";
+import './Header.scss';
+
 
 function Header({ history }) {
   const user = getUser();

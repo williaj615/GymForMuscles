@@ -21,7 +21,7 @@ function Register({ history }) {
       firstName,
       lastName
     })
-      .then((user) => history.push("/"))
+      .then((user) => history.push("/Home"))
       .catch((err) => {
         setErrors(err.messages || ["Whoops! Something unexpected happened..."]);
       });

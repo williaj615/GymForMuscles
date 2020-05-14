@@ -1,7 +1,9 @@
 import React from 'react'
 import { getUser } from '../../API/userManager';
 import userWorkoutData from '../../helpers/data/userWorkoutData';
+import './WorkoutQueue.scss';
 
+import { createBrowserHistory as history} from 'history';
 
 class WorkoutQueue extends React.Component {
 
@@ -11,13 +13,18 @@ class WorkoutQueue extends React.Component {
 
     componentDidMount() {
         const currentUser = getUser();
-
+        const incompleteWorkouts = [];
         userWorkoutData.getUserWorkouts(currentUser.id)
         .then((workouts) => {
             if (workouts != undefined) {
-                this.setState({ userWorkouts: workouts})
+                workouts.forEach((workout) => {
+                    if (workout.dateCompleted == null) {
+                        incompleteWorkouts.push(workout)
+                    }
+                })
+                
             }
-            else {}
+            this.setState({ userWorkouts: incompleteWorkouts})
         })
         .catch((errOnWorkoutQueue) => console.error(errOnWorkoutQueue))
     }
@@ -26,6 +33,7 @@ class WorkoutQueue extends React.Component {
         e.preventDefault();
         const uwId = e.target.id
         userWorkoutData.deleteUserWorkout(uwId);
+        
     }
 
     completeWorkout = (e) => {
@@ -41,20 +49,23 @@ class WorkoutQueue extends React.Component {
         }
         // console.log(updatedUW.dateCompleted)
         userWorkoutData.updateUserWorkout(uwId, updatedUW)
+        
     }
 
     render () {
         const { userWorkouts } = this.state;
+        const currentUser = getUser();
         return (
             <div>
-                <h1>These are your queued workouts.</h1>
-                <div>
+                <h1>Hi, {currentUser.firstName}!</h1>
+                <h2>These are your queued workouts.</h2>
+                <div className="q-workouts-container d-flex flex-row flex-wrap justify-content-between">
                     {userWorkouts.map((workout) => 
                     <div id={workout.workoutId} key={workout.id} workout={workout} className="card q-workout-card">
                         <p>{workout.workout.name}</p>
                         <p>Category: {workout.workout.category.name}</p>
-                        <button id={workout.id} onClick={this.removeFromUserQueue}>Remove from queue</button>
-                        <button id={workout.id} workout={workout.workoutId} onClick={this.completeWorkout}>Mark as complete</button>
+                        <button className="btn btn-danger" id={workout.id} onClick={this.removeFromUserQueue}>Remove from queue</button>
+                        <button className="btn btn-info" id={workout.id} workout={workout.workoutId} onClick={this.completeWorkout}>Mark as complete</button>
                     </div>)}
                 </div>
             </div>

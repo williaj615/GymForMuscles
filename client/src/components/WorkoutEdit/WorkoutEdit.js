@@ -9,6 +9,7 @@ import workoutExerciseData from '../../helpers/data/workoutExerciseData';
 class WorkoutEdit extends React.Component {
 
 state = {
+    query: '',
     workout: {},
     exercises: [],
     selectedExercises: [],
@@ -34,7 +35,7 @@ componentDidMount() {
         })
         this.setState({ selectedExercises: mem})
     })
-    exerciseData.getAllExercises()
+    exerciseData.getAllExercises(this.state.query)
       .then(data => {
           let libraryExercises = data.map(exercise => {
             return {value: exercise.id, label: exercise.name}
@@ -72,7 +73,6 @@ updateWorkoutEvent = (e) => {
     const { selectedExercises } = this.state;
     const { match: { params } } = this.props;
     const workoutid = `${params.id}`
-    e.preventDefault();
     workoutExerciseData.getWExercisesByWorkoutId(workoutid)
     .then((exercises) => {
         exercises.forEach((ex) => 
@@ -86,9 +86,8 @@ updateWorkoutEvent = (e) => {
       userId: currentUser.id.toString()
     };
     workoutData.updateWorkout(parseInt(workoutid), updatedWorkout)
-
-    
-    selectedExercises.forEach((exercise) => {
+    .then(() => {
+      selectedExercises.forEach((exercise) => {
         const newWEx = {
             workoutId: parseInt(workoutid),
             exerciseId: exercise.value
@@ -96,7 +95,10 @@ updateWorkoutEvent = (e) => {
         workoutExerciseData.createWExercise(newWEx);
     })
 
-    
+    })
+    workoutData.getAllWorkouts(this.state.query)
+
+    this.props.history.push('/api/Workouts')
 }
 
 cancelAdd = () => {
@@ -109,13 +111,13 @@ getSelectedExercises = (selectedOptions) => {
     this.setState({ selectedExercises: selectedOptions })
 }
 
-componentWillUnmount() {
-    this.setState({ exercises: [],
-        selectedExercises: [],
-        workoutName: '',
-        workoutCategory: undefined,
-        wCategories: []});
-}
+// componentWillUnmount() {
+//     this.setState({ exercises: [],
+//         selectedExercises: [],
+//         workoutName: '',
+//         workoutCategory: undefined,
+//         wCategories: []});
+// }
 
 render() {
     const { exercises, selectedExercises, selectedOption } = this.state;

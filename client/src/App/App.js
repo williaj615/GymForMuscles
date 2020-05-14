@@ -4,7 +4,7 @@ import Header from "../components/MyNavBar/Header";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import { getUser } from "../API/userManager";
-import "./App.css";
+import "./App.scss";
 import ExerciseLibrary from "../components/ExerciseLibrary/ExerciseLibrary";
 import ExerciseEdit from '../components/ExerciseEdit/ExerciseEdit';
 import WorkoutLibrary from '../components/WorkoutLibrary/WorkoutLibrary';
@@ -15,6 +15,7 @@ import WorkoutEdit from "../components/WorkoutEdit/WorkoutEdit";
 import DeleteConfirm from '../components/DeleteConfirm/DeleteConfirm';
 import WorkoutDeleteConfirm from '../components/WorkoutDeleteConfirm/WorkoutDeleteConfirm';
 import HistoryView from '../components/HistoryView/HistoryView';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
 
@@ -32,12 +33,12 @@ class App extends React.Component {
         <Route
           exact
           path="/login"
-          render={() => (getUser() ? <Redirect to="/" /> : <Login />)}
+          render={() => (getUser() ? <Redirect to="/Home" /> : <Login />)}
         />
         <Route
           exact
           path="/register"
-          render={() => (getUser() ? <Redirect to="/" /> : <Register />)}
+          render={() => (getUser() ? <Redirect to="/Home" /> : <Register />)}
         />
         <Route
           exact

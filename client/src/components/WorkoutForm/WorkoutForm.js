@@ -5,10 +5,12 @@ import { getUser } from '../../API/userManager';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import categoryData from '../../helpers/data/categoryData';
 import workoutExerciseData from '../../helpers/data/workoutExerciseData';
+import { Redirect } from 'react-router';
 
 class WorkoutForm extends React.Component {
 
 state = {
+    query: '',
     exercises: [],
     selectedExercises: [],
     workoutName: '',
@@ -19,7 +21,7 @@ state = {
 componentDidMount() {
 
 
-    exerciseData.getAllExercises()
+    exerciseData.getAllExercises(this.state.query)
       .then(data => {
           let libraryExercises = data.map(exercise => {
             return {value: exercise.id, label: exercise.name}
@@ -75,10 +77,11 @@ saveWorkoutEvent = (e) => {
     
 }
 
-cancelAdd = () => {
+setCancelAdd = () => {
     this.setState({ exercises: [],
         selectedExercises: [],
         workoutName: '' })
+
 }
 
 getSelectedExercises = (selectedOptions) => {
@@ -109,7 +112,10 @@ render() {
             />
           </div>
           <div className="form-group">
+          <label htmlFor="workout-exercises">Exercises:</label>  
           <ReactMultiSelectCheckboxes 
+          className="select-ex ml-1"
+          id="workout-exercises"
           options={exercises}
           isMulti
           value={selectedOption}
@@ -118,7 +124,7 @@ render() {
           </div>
           <div className="form-group">
             <label htmlFor="workout-category">Category:</label>
-            <select id="workout-category" value={this.state.workoutCategory} onChange={this.categoryChange}> 
+            <select className="ml-1" id="workout-category" value={this.state.workoutCategory} onChange={this.categoryChange}> 
               {this.state.wCategories.map((category) => <option key={category.value} value={category.value}>{category.display}</option>)}
             </select>
           </div>

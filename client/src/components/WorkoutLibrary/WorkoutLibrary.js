@@ -42,7 +42,7 @@ class WorkoutLibrary extends React.Component {
             <div>
                 <form>
                 <input
-                    placeholder="Search for..."
+                    placeholder="Search for a workout..."
                     ref={input => this.search = input}
                     onChange={this.handleInputChange}
                     onKeyUp={this.getWorkouts}>

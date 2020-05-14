@@ -46,6 +46,7 @@ class SingleWorkout extends React.Component {
         }
         userWorkoutData.createUserWorkout(newUserWorkout);
         console.log(currentUser.id)
+        this.props.history.push('/Home')
     }
 
     render() {

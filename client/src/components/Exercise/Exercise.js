@@ -16,7 +16,6 @@ setEditModeEvent = (e) => {
   const { setEditMode } = this.props;
   e.preventDefault();
   setEditMode(true);
-  // setExerciseToUpdate(exercise);
 }
 
 render() {

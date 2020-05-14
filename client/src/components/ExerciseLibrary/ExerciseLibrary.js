@@ -3,6 +3,7 @@ import exerciseData from '../../helpers/data/exerciseData';
 import Exercise from '../Exercise/Exercise';
 import ExerciseForm from '../ExerciseForm/ExerciseForm';
 import ReactDOM from 'react-dom';
+import './ExerciseLibrary.scss';
 
 
 class ExerciseLibrary extends React.Component {
@@ -67,7 +68,7 @@ render() {
     <div>
       <form>
        <input
-         placeholder="Search for..."
+         placeholder="Search for an exercise..."
          ref={input => this.search = input}
          onChange={this.handleInputChange}
          onKeyUp={this.getExercises}>
@@ -75,7 +76,7 @@ render() {
        </form>
       <button className="btn btn-secondary m-3" onClick={this.setDisplayExerciseForm}>Add an Exercise</button>
       { this.state.displayExerciseForm && (<ExerciseForm addExercise={this.addExercise} setCancelAdd={this.setCancelAdd} editMode={editMode} updateExercise={this.updateExercise}/>)}
-      <div id="Exercises-container" className="d-flex flex-row flex-wrap justify-content-around">
+      <div id="Exercises-container" className="d-flex justify-content-around flex-wrap flex-row">
         {exercises.map((exercise) => (<Exercise key={exercise.id} exercise={exercise} setDisplayExerciseForm={this.state.setDisplayExerciseForm} removeSingleExercise={this.removeSingleExercise} setEditMode={this.setEditMode} />))}
       </div>
     </div>

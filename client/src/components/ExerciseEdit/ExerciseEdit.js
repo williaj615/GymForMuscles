@@ -5,6 +5,8 @@ import exerciseShape from '../../helpers/propz/exerciseShape';
 import muscleGroupData from '../../helpers/data/muscleGroupData';
 import exerciseData from '../../helpers/data/exerciseData'
 
+import { createBrowserHistory as history} from 'history';
+
 class ExerciseEdit extends React.Component {
   static propTypes = {
     addExercise: PropTypes.func,
@@ -59,8 +61,8 @@ class ExerciseEdit extends React.Component {
       };
       console.log(updatedExercise);
       exerciseData.updateExercise(exerciseToUpdate.id, updatedExercise);
-      this.props.history.push('/api/Exercises');
       exerciseData.getAllExercises();
+      this.props.history.push('/api/Exercises');
       this.setState({ exerciseName: '', exerciseMuscleGroup: '' });
     }
 
